@@ -5,3 +5,12 @@ content-type: application/json
     "email": "test@bestmail.lol",
     "password": "123"
 }
+###
+
+POST http://localhost:8080/api/recruiters/auth/ HTTP/1.1
+content-type: application/json
+
+{
+    "email": "test@bestmail.lol",
+    "password": "123"
+}

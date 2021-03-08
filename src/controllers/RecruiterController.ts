@@ -9,7 +9,7 @@ class RecruiterController{
 
         const recruiterExists = await repository.findOne({where: {email}});
         if(recruiterExists){
-            return res.sendStatus(409);
+            return res.sendStatus(409).json({message:"Recruiter with this email already exist."});
         }
 
         const recruiter = repository.create({
