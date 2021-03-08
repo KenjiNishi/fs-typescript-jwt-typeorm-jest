@@ -20,5 +20,9 @@ class RecruiterController{
         await repository.save(recruiter);
         return res.status(200).json(recruiter);
     }
+
+    async list(req: Request, res: Response){
+        res.status(200).json('ok');
+    }
 }
 export default new RecruiterController();

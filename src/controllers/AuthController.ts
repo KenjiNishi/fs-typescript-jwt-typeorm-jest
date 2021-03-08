@@ -27,6 +27,8 @@ class AuthController{
             process.env.TOKEN_SECRET,
             {expiresIn : '1h'}
         )
+        delete recruiter.password;
+
         return res.status(200)
         .json({
             recruiter,

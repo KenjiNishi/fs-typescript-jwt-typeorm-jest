@@ -14,3 +14,8 @@ content-type: application/json
     "email": "test@bestmail.lol",
     "password": "123"
 }
+###
+
+GET  http://localhost:8080/api/candidates/list/ HTTP/1.1
+content-type: application/json
+Authorization: Token xxx
