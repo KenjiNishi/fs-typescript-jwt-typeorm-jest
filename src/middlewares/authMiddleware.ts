@@ -13,7 +13,7 @@ function authMiddleware(req: Request, res: Response, next: NextFunction){
         return res.sendStatus(401);
     }
 
-    const token = authorization.replace('Bearer', '').trim();
+    const [ ,token] = authorization.split(' ');
     try{
         const data = jwt.verify(token, process.env.TOKEN_SECRET);
         const {id} = data as TokenPayload;

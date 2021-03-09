@@ -16,6 +16,5 @@ content-type: application/json
 }
 ###
 
-GET  http://localhost:8080/api/candidates/list/ HTTP/1.1
-content-type: application/json
-Authorization: Token xxx
+GET  http://localhost:8080/api/candidates/list/
+//Authorization: Bearer xxx
