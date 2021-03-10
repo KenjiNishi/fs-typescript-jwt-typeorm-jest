@@ -15,6 +15,3 @@ content-type: application/json
     "password": "123"
 }
 ###
-
-GET  http://localhost:8080/api/candidates/list/
-//Authorization: Bearer xxx

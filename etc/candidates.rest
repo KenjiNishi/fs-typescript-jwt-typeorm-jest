@@ -1,0 +1,35 @@
+POST http://localhost:8080/api/candidates/create/ HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Tester Testerson",
+    "email": "user@bestmail.lol",
+    "dob": "2002-01-01T23:28:56.782Z",
+    "linkedin":"linked.in/defuser",
+    "techs":["one", "two", "three"]
+}
+
+###
+
+GET  http://localhost:8080/api/candidates/list/
+//Authorization: Bearer xxx
+###
+
+GET http://localhost:8080/api/candidates/get/ID HTTP/1.1
+
+###
+
+POST http://localhost:8080/api/candidates/update/ID HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Tester Testerson the Third",
+    "email": "tttt@bestmail.lol",
+    "dob": "2002-01-01T23:28:56.782Z",
+    "linkedin":"linked.in/tttt",
+    "techs":["one", "two", "three"]
+}
+
+
+###
+POST http://localhost:8080/api/candidates/delete/ID HTTP/1.1
