@@ -12,7 +12,7 @@ router.post('/api/recruiters/auth/', AuthController.authenticate);
 router.post('/api/candidates/create/', CandidateController.create);
 router.get('/api/candidates/get/:id', CandidateController.getOne);
 router.put('/api/candidates/update/:id', CandidateController.update);
-router.post('/api/candidates/delete/:id', CandidateController.delete);
+router.delete('/api/candidates/delete/:id', CandidateController.delete);
 router.get('/api/candidates/list/', CandidateController.list);
 // router.get('/api/candidates/list/', authMiddleware, CandidateController.list);
 
