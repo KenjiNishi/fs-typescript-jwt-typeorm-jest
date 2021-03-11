@@ -1,10 +1,11 @@
 POST http://localhost:8080/api/candidates/create/ HTTP/1.1
 content-type: application/json
+Authorization: Bearer xxx
 
 {
     "name": "Tester Testerson",
     "email": "user@bestmail.lol",
-    "dob": "2002-01-01T23:28:56.782Z",
+    "age": 28,
     "linkedin":"linked.in/defuser",
     "techs":["one", "two", "three"]
 }
@@ -12,20 +13,22 @@ content-type: application/json
 ###
 
 GET  http://localhost:8080/api/candidates/list/
-//Authorization: Bearer xxx
+Authorization: Bearer xxx
 ###
 
 GET http://localhost:8080/api/candidates/get/ID HTTP/1.1
+Authorization: Bearer xxx
 
 ###
 
 POST http://localhost:8080/api/candidates/update/ID HTTP/1.1
 content-type: application/json
+Authorization: Bearer xxx
 
 {
     "name": "Tester Testerson the Third",
     "email": "tttt@bestmail.lol",
-    "dob": "2002-01-01T23:28:56.782Z",
+    "age": 24,
     "linkedin":"linked.in/tttt",
     "techs":["one", "two", "three"]
 }
@@ -33,3 +36,4 @@ content-type: application/json
 
 ###
 POST http://localhost:8080/api/candidates/delete/ID HTTP/1.1
+Authorization: Bearer xxx

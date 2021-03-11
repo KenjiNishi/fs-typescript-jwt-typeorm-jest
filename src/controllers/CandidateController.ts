@@ -5,14 +5,14 @@ import Candidate from "../models/Candidate";
 class CandidateController{
     async create(req: Request, res: Response){
         const repository = getRepository(Candidate);
-        const {name, email, dob, linkedin, techs } = req.body;
+        const {name, email, age, linkedin, techs } = req.body;
 
         const candidateExists = await repository.findOne({where: {email}});
         if(candidateExists){
             return res.status(409).json({message:"Candidate with this email already exists."});
         }
 
-        const candidate = repository.create({name, email, dob, linkedin, techs});
+        const candidate = repository.create({name, email, age, linkedin, techs});
         
         await repository.save(candidate);
         return res.status(201).json(candidate);
@@ -38,7 +38,7 @@ class CandidateController{
     async update(req: Request, res: Response){
         const repository = getRepository(Candidate);
         const {id} = req.params;
-        const {name, email, dob, linkedin, techs } = req.body;
+        const {name, email, age, linkedin, techs } = req.body;
 
         const candidate = await repository.findOne({where: {id}});
         if(!candidate){
@@ -47,7 +47,7 @@ class CandidateController{
 
         if(name){candidate.name = name;}
         if(email){candidate.email = email;}
-        if(dob){candidate.dob = dob;}
+        if(age){candidate.age = age;}
         if(linkedin){candidate.linkedin = linkedin;}
         if(techs){candidate.techs=techs;}
 

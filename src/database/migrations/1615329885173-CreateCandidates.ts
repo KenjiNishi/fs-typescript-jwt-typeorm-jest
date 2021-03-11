@@ -10,7 +10,7 @@ export class CreateCandidates1615329885173 implements MigrationInterface {
                 {name: 'name', type:'varchar'},
                 {name: 'email', type:'varchar', isUnique:true},
                 {name: 'linkedin', type:'varchar'},
-                {name: "dob", type:'date'},
+                {name: "age", type:'number'},
                 {name: 'techs', type:'varchar'},
                 {name: "createdAt", type:"timestamp", default:"now()"}
             ]

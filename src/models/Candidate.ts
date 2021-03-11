@@ -14,7 +14,7 @@ import {v4 as uuid} from 'uuid';
 
     //date of birth - for age field
     @Column()
-    dob: Date;
+    age: number;
 
     @Column()
     linkedin: string;

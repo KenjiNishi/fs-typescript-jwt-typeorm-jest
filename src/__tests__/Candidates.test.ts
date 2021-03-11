@@ -34,7 +34,7 @@ describe("Testing Candidate Table",()=>{
         const response = await request(app).post("/api/candidates/create/").send({
             name: "Tester Testerson",
             email: "initial@bestmail.lol",
-            dob: "2002-01-01T23:28:56.782Z",
+            age: 35,
             linkedin:"linked.in/defuser",
             techs:["Javascript", "NodeJs", "React"]
         }).set('Authorization', `Bearer ${token}`);
@@ -46,7 +46,7 @@ describe("Testing Candidate Table",()=>{
         const response = await request(app).post("/api/candidates/create/").send({
             name: "Misterious duplicate",
             email: "initial@bestmail.lol",
-            dob: "2001-04-01T21:12:42.782Z",
+            age: 26,
             linkedin:"linked.in/",
             techs:["C#", "PHP", "Ionic"]
         }).set('Authorization', `Bearer ${token}`);
