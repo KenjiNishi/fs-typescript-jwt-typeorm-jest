@@ -4,10 +4,24 @@ import { app } from '../app';
 import createConnection from '../database';
 import Candidate from '../models/Candidate';
 
+let token : string;
+
 describe("Testing Candidate Table",()=>{
     beforeAll(async ()=>{
         const connection = await createConnection();
         await connection.runMigrations();
+
+        await request(app).post("/api/recruiters/create/").send({
+            email: "tester@exa.com",
+            password: "testing",
+        });
+
+        let login = await request(app).post("/api/recruiters/auth/")
+        .send({
+            email: "tester@exa.com",
+            password: "testing",
+        })
+        token = login.body.token;
     });
 
     afterAll(async ()=>{
@@ -23,7 +37,7 @@ describe("Testing Candidate Table",()=>{
             dob: "2002-01-01T23:28:56.782Z",
             linkedin:"linked.in/defuser",
             techs:["Javascript", "NodeJs", "React"]
-        });
+        }).set('Authorization', `Bearer ${token}`);
         expect(response.status).toBe(201);
         }) 
     
@@ -35,7 +49,7 @@ describe("Testing Candidate Table",()=>{
             dob: "2001-04-01T21:12:42.782Z",
             linkedin:"linked.in/",
             techs:["C#", "PHP", "Ionic"]
-        });
+        }).set('Authorization', `Bearer ${token}`);
         expect(response.status).toBe(409);
         }) 
 
@@ -44,11 +58,16 @@ describe("Testing Candidate Table",()=>{
         const candidate = await repository.findOne({where: {name : "Tester Testerson"}});
 
         const response = await request(app).get(`/api/candidates/get/${candidate.id}`)
+        .set('Authorization', `Bearer ${token}`)
+
         expect(response.status).toBe(200);
         }) 
     
     it("Should be able to get Candidate list", async ()=>{
-        const response = await request(app).get(`/api/candidates/list/`);
+        const response = await request(app)
+        .get(`/api/candidates/list/`)
+        .set('Authorization', `Bearer ${token}`);
+
         expect(response.status).toBe(200);
         }) 
 
@@ -60,7 +79,7 @@ describe("Testing Candidate Table",()=>{
             email: "updated@bestmail.lol",
             linkedin:"linked.in/therealaddress",
             techs:["Javascript", "NodeJs", "React", "C#", "PHP", "Ionic"]
-        });
+        }).set('Authorization', `Bearer ${token}`);
         expect(updated.status).toBe(200);
         }) 
     
@@ -68,7 +87,8 @@ describe("Testing Candidate Table",()=>{
         const repository = getRepository(Candidate);
         const candidate = await repository.findOne({where: {name : "Tester Testerson"}});
 
-        const response = await request(app).delete(`/api/candidates/delete/${candidate.id}`);
+        const response = await request(app).delete(`/api/candidates/delete/${candidate.id}`)
+        .set('Authorization', `Bearer ${token}`);
         expect(response.status).toBe(200);
         }) 
 });

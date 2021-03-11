@@ -19,7 +19,7 @@ function authMiddleware(req: Request, res: Response, next: NextFunction){
         const {id} = data as TokenPayload;
 
         //Getting the authenticated user id
-        console.log(id);
+        //console.log(id);
 
         return next();
 
