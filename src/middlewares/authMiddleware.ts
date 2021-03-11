@@ -18,8 +18,8 @@ function authMiddleware(req: Request, res: Response, next: NextFunction){
         const data = jwt.verify(token, process.env.TOKEN_SECRET);
         const {id} = data as TokenPayload;
 
-        //Getting the authenticated user id
-        //console.log(id);
+        // Saving the ID returned by the token inside the Request Body
+        req.body.userId = id;
 
         return next();
 
