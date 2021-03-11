@@ -12,13 +12,13 @@ class AuthController{
 
         const recruiter = await repository.findOne({where: {email}});
         if(!recruiter){
-            return res.sendStatus(401)
+            return res.status(400)
             .json({message:"Recruiter with this email does not exist."});
         }
 
         const validPassword = await bcrypt.compare(password, recruiter.password);
         if(!validPassword){
-            return res.sendStatus(401)
+            return res.status(401)
             .json({message:"Incorrect password!"});
         }
 

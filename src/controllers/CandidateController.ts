@@ -9,13 +9,13 @@ class CandidateController{
 
         const candidateExists = await repository.findOne({where: {email}});
         if(candidateExists){
-            return res.sendStatus(409).json({message:"Candidate with this email already exists."});
+            return res.status(409).json({message:"Candidate with this email already exists."});
         }
 
         const candidate = repository.create({name, email, dob, linkedin, techs});
         
         await repository.save(candidate);
-        return res.status(200).json(candidate);
+        return res.status(201).json(candidate);
     }
 
     async list(req: Request, res: Response){
