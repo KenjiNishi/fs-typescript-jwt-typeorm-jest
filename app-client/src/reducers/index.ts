@@ -1,7 +1,10 @@
 import { combineReducers } from 'redux';
 
-import auth from './authReducers';
+import {authReducer, authStateInterface}from './authReducers';
+export interface ReducersStoreInterface{
+  auth : authStateInterface
+}
 
-export default combineReducers({
-  auth,
+export const rootReducer = combineReducers<ReducersStoreInterface, any> ({
+  auth : authReducer,
 });

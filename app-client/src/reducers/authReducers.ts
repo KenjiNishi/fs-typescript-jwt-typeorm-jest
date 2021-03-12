@@ -1,21 +1,34 @@
-import { LOGIN_SUCCESS, LOGIN_FAIL, ActionInterface} from '../actions/types'
+import { Reducer } from 'react';
+import { LOGIN_SUCCESS, LOGIN_FAIL} from '../actions/types';
+import {AuthActionInterface} from '../actions/authActions';
 
-const initialState = {
-    isAuthenticated: null,
-    isLoading: null,
-    token: localStorage.getItem('token'),
-    recruiter: null
+export interface authStateInterface{
+    isAuthenticated : boolean;
+    token : string;
+    recruiter : {
+        id : string,
+        email : string
+    };
+}
+
+const initialState : authStateInterface = {
+    isAuthenticated: false,
+    token: localStorage.getItem('token') || '',
+    recruiter: {id:'', email:''}
 };
 
-export default function (state = initialState, action : ActionInterface) {
-    switch (action.type){
-        case LOGIN_SUCCESS:
-            localStorage.setItem('token', action.payload.token);
-            return{...state, ...action.payload, isAuthenticated: true}
-        case LOGIN_FAIL:
-            localStorage.removeItem('token');
-            return{...state, token: null, isAuthenticated: false, recruiter : null}
-        default:
-            return state;
-    }
+export const authReducer  = (
+    state = initialState,
+    action : AuthActionInterface
+    ) => {
+        switch (action.type){
+            case LOGIN_SUCCESS:
+                localStorage.setItem('token', action.payload.token);
+                return{...state, ...action.payload, isAuthenticated: true}
+            case LOGIN_FAIL:
+                localStorage.removeItem('token');
+                return{...state, token: '', isAuthenticated: false, recruiter : {id:'',email:''}}
+            default:
+                return state;
+        }
 }
