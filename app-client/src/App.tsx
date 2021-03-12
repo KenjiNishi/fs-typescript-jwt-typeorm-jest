@@ -1,12 +1,24 @@
+import React from 'react';
 import { Provider} from 'react-redux';
+import { Route, Switch, BrowserRouter as Router} from 'react-router-dom';
+import Dashboard from './components/Dashboard';
+
+import Login from './components/Login';
 import store from './store';
 
 function App() {
   return (
     <Provider store={store}>
-      <div>
-        <h3>Hello, World.</h3>
-      </div>
+      <Router>
+        <React.Fragment>
+          <div className="container">
+          < Switch>
+              <Route exact path="/" component={Dashboard} />
+              <Route exact path="/login" component={Login} />
+            </Switch>
+          </div> 
+        </React.Fragment>
+      </Router>
     </Provider>
   );
 }
