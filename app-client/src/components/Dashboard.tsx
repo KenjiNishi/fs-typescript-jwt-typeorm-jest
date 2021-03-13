@@ -1,19 +1,23 @@
-import { useEffect, useState } from 'react';
+import { useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
+import { listCandidates } from '../actions/candidatesActions';
 import { ReducersStoreInterface } from '../reducers';
 
 export default function Dashboard(){
     const dispatch = useDispatch();
     const isAuthenticated = useSelector((state: ReducersStoreInterface) => state.auth.isAuthenticated);
+    const token = useSelector((state: ReducersStoreInterface) => state.auth.token);
 
     useEffect(()=>{
+        if (isAuthenticated) {
+            dispatch(listCandidates(token));
+        }
 
     },[])
 
     if (!isAuthenticated) {
-        console.log('Auth is '+ isAuthenticated + '. Redirecting from Dashboard to Login');
         return(<Redirect to="/login" />)
     }
   
