@@ -15,7 +15,7 @@ export default function Dashboard(){
             dispatch(listCandidates(token));
         }
 
-    },[])
+    },)
 
     if (!isAuthenticated) {
         return(<Redirect to="/login" />)

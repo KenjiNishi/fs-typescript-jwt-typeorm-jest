@@ -18,7 +18,7 @@ export default function Login(){
   };
 
   useEffect(()=>{
-      console.log('Accessing Login. Auth:', isAuthenticated);
+    
   }, [])
   
   if (isAuthenticated) {

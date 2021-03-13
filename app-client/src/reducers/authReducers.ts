@@ -1,4 +1,3 @@
-import { Reducer } from 'react';
 import { LOGIN_SUCCESS, LOGIN_FAIL} from '../actions/types';
 import {AuthActionInterface} from '../actions/authActions';
 

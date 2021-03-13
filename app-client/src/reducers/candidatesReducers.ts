@@ -1,6 +1,5 @@
 import { CREATE_CANDIDATE, DELETE_CANDIDATE, GET_CANDIDATE, LIST_CANDIDATES, UPDATE_CANDIDATE} from '../actions/types';
 import { CandidateInterface, candidatesActionListI, candidatesActionsNoPayloadI, candidatesActionGetI } from '../actions/candidatesActions';
-import { useDispatch } from 'react-redux';
 
 export interface candidatesStateInterface{
     candidates : CandidateInterface[];
