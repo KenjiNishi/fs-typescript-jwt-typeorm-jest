@@ -22,11 +22,11 @@ export interface candidatesActionListI {
 }
 
 export interface candidatesActionGetI {
-    type : typeof GET_CANDIDATE | typeof UPDATE_CANDIDATE
+    type : typeof GET_CANDIDATE | typeof UPDATE_CANDIDATE | typeof DELETE_CANDIDATE
     payload : CandidateInterface
 }
 export interface candidatesActionsNoPayloadI {
-    type: typeof DELETE_CANDIDATE | typeof CREATE_CANDIDATE
+    type: typeof CREATE_CANDIDATE
 }
 
 
@@ -156,7 +156,7 @@ export const deleteCandidate : ActionCreator<
         Promise<any>, 
         candidatesStateInterface, 
         null, 
-        candidatesActionsNoPayloadI
+        candidatesActionGetI
     >>  = (token : string, id: string ) =>{
 
         return async (dispatch : Dispatch) =>{
@@ -169,9 +169,9 @@ export const deleteCandidate : ActionCreator<
             await axios.delete(`http://localhost:8080/api/candidates/delete/${id}`, config)
                 .then((response : AxiosResponse) => {
                     dispatch(createMessage(`Candidate deleted: ${id}`));
-                    listCandidates(token);
                     dispatch({
-                        type: DELETE_CANDIDATE
+                        type: DELETE_CANDIDATE,
+                        payload: response.data
                     })
                 }).catch((err) => {
                     if(!err.response){dispatch(returnErrors(err.message, 500));}

@@ -23,8 +23,13 @@ export const candidatesReducer  = (
             case UPDATE_CANDIDATE:
                 return{...state, selectedCandidate : action.payload}
             case CREATE_CANDIDATE:
-            case DELETE_CANDIDATE:
                 return {...state, selectedCandidate : nullCandidate}
+            case DELETE_CANDIDATE:
+                return {
+                    ...state,
+                    candidates : state.candidates.filter((cand)=>cand.id !== action.payload.id),
+                    selectedCandidate : nullCandidate
+                }
             default:
                 return state;
         }
