@@ -44,7 +44,7 @@ export const login : ActionCreator<
                     })
                 }).catch((err) => {
                     if(!err.response){dispatch(returnErrors(err.message, 500));}
-                    else{dispatch(returnErrors(err.message, err.response.status));}
+                    else{dispatch(returnErrors(err.response.data.message, err.response.status));}
                     dispatch({
                         type: LOGIN_FAIL,
                         payload: {recruiter:{id:'',email:''}, token:''}

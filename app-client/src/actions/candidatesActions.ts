@@ -54,7 +54,7 @@ export const listCandidates : ActionCreator<
                     });
                 }).catch((err) => {
                     if(!err.response){dispatch(returnErrors(err.message, 500));}
-                    else{dispatch(returnErrors(err.message, err.response.status));}
+                    else{dispatch(returnErrors(err.response.data.message, err.response.status));}
                 })
     }
 }
@@ -85,7 +85,7 @@ export const createCandidate : ActionCreator<
                     })
                 }).catch((err) => {
                     if(!err.response){dispatch(returnErrors(err.message, 500));}
-                    else{dispatch(returnErrors(err.message, err.response.status));}
+                    else{dispatch(returnErrors(err.response.data.message, err.response.status));}
                 })
     }
 }
@@ -114,7 +114,7 @@ export const getCandidate : ActionCreator<
                     });
                 }).catch((err) => {
                     if(!err.response){dispatch(returnErrors(err.message, 500));}
-                    else{dispatch(returnErrors(err.message, err.response.status));}
+                    else{dispatch(returnErrors(err.response.data.message, err.response.status));}
                 })
     }
 }
@@ -146,7 +146,7 @@ export const updateCandidate : ActionCreator<
                     })
                 }).catch((err) => {
                     if(!err.response){dispatch(returnErrors(err.message, 500));}
-                    else{dispatch(returnErrors(err.message, err.response.status));}
+                    else{dispatch(returnErrors(err.response.data.message, err.response.status));}
                 })
     }
 }
@@ -175,7 +175,7 @@ export const deleteCandidate : ActionCreator<
                     })
                 }).catch((err) => {
                     if(!err.response){dispatch(returnErrors(err.message, 500));}
-                    else{dispatch(returnErrors(err.message, err.response.status));}
+                    else{dispatch(returnErrors(err.response.data.message, err.response.status));}
                 })
     }
 }
