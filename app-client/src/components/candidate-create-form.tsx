@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import CheckboxGroup from 'react-checkbox-group'
 import { useState } from 'react'
-import { useHistory } from "react-router";
+import { Redirect, useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { ReducersStoreInterface } from "../reducers";
 import { createCandidate } from "../actions/candidatesActions";
@@ -23,6 +23,7 @@ export const CreateCandidateForm = () => {
     const { register, handleSubmit, errors } = useForm<CreateCandidateFormDataI>();
     const [techs, setTechs] = useState<string[]>(acceptedTechs)
     const history = useHistory()
+    const isAuthenticated = useSelector((state: ReducersStoreInterface) => state.auth.isAuthenticated);
 
     const dispatch = useDispatch();
     const token = useSelector((state: ReducersStoreInterface) => state.auth.token);
@@ -32,6 +33,10 @@ export const CreateCandidateForm = () => {
         dispatch(createCandidate(token, formOutput));
         history.push('/')
       };
+    
+    if (!isAuthenticated) {
+        return(<Redirect to="/login" />)
+    }
     
     return (
         <div className='container'>

@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import CheckboxGroup from 'react-checkbox-group'
 import { useEffect, useState } from 'react'
-import { useHistory, useParams } from "react-router";
+import { Redirect, useHistory, useParams } from "react-router";
 
 import {CreateCandidateFormDataI, acceptedTechs, MinimumAge} from './candidate-create-form';
 import { useDispatch, useSelector } from "react-redux";
@@ -22,6 +22,7 @@ export const EditCandidateForm = () => {
     const token = useSelector((state: ReducersStoreInterface) => state.auth.token);
     const listCandidates = useSelector((state: ReducersStoreInterface) => state.candidates.candidates);
     const selectedCandidate = useSelector((state: ReducersStoreInterface) => state.candidates.selectedCandidate);
+    const isAuthenticated = useSelector((state: ReducersStoreInterface) => state.auth.isAuthenticated);
 
     useEffect(()=>{
         const localQuery = listCandidates.filter(
@@ -53,6 +54,9 @@ export const EditCandidateForm = () => {
         history.push('/')
       };
     
+    if (!isAuthenticated) {
+        return(<Redirect to="/login" />)
+    }
     return (
         <div className='container'>
         <br/>
