@@ -79,6 +79,7 @@ export const createCandidate : ActionCreator<
             await axios.post(`http://localhost:8080/api/candidates/create/`, body, config)
                 .then((response : AxiosResponse) => {
                     dispatch(createMessage(`Candidate created!`));
+                    listCandidates(token);
                     dispatch({
                         type: CREATE_CANDIDATE
                     })
@@ -138,6 +139,7 @@ export const updateCandidate : ActionCreator<
             await axios.put(`http://localhost:8080/api/candidates/update/${id}`, body, config)
                 .then((response : AxiosResponse) => {
                     dispatch(createMessage(`Candidate updated!`));
+                    listCandidates(token);
                     dispatch({
                         type: UPDATE_CANDIDATE,
                         payload: response.data
@@ -167,6 +169,7 @@ export const deleteCandidate : ActionCreator<
             await axios.delete(`http://localhost:8080/api/candidates/delete/${id}`, config)
                 .then((response : AxiosResponse) => {
                     dispatch(createMessage(`Candidate deleted: ${id}`));
+                    listCandidates(token);
                     dispatch({
                         type: DELETE_CANDIDATE
                     })

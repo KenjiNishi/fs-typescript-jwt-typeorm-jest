@@ -1,6 +1,6 @@
 import { useEffect} from 'react';
 import { useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import { ReducersStoreInterface } from '../reducers';
 
@@ -20,6 +20,12 @@ export default function Dashboard(){
     return (
         <div>
             <h2>Welcome, hero.</h2>
+
+            <div className="container">
+                <Link to={"/create"}> 
+                        <button className="btn btn-info">Add new Candidate</button>
+                </Link>
+            </div>
 
             <CandidateList/>
         </div>

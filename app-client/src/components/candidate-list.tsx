@@ -5,9 +5,6 @@ import { Link } from 'react-router-dom';
 import { CandidateInterface, deleteCandidate, listCandidates } from '../actions/candidatesActions';
 import { ReducersStoreInterface } from '../reducers';
 
-// interface MyComponentProps extends RouteComponentProps {
-//     params: {id: string}
-// }
 interface CandidateListItemPropsI{
     key: string;
     candidate : CandidateInterface;
@@ -19,7 +16,7 @@ function CandidateListItem(props : CandidateListItemPropsI) {
 
     return(
     <tr>
-        <td>{props.candidate.id}</td>
+        <th scope="row">{props.candidate.id}</th>
         <td>{props.candidate.name}</td>
         <td>
           <p>{props.candidate.email}</p>
@@ -40,9 +37,9 @@ function CandidateListItem(props : CandidateListItemPropsI) {
                 }}>Delete</button> 
             
                 <Link 
-                    to={"/detailedView/"+props.candidate.id}
+                    to={"/edit/"+props.candidate.id}
                     onClick={() => {}}> 
-                    <button className="btn btn-info">Details</button>
+                    <button className="btn btn-info">Edit</button>
                 </Link> 
             </p>
       </td>
@@ -67,15 +64,15 @@ export default function CandidateList(){
               <div className='col-sm-12'>
                 <br/>
                 <h3>Candidates :</h3>
-                <table className="table">
-                  <thead className="thead-dark">
+                <table className="table table-light table-hover">
+                  <thead className="table-dark">
                     <tr >
-                      <th scope="col-1">Id</th>
-                      <th scope="col-3">Name</th>
-                      <th scope="col-2">Contact</th>
-                      <th scope="col-1">Age</th>
-                      <th scope="col-3">Techs</th>
-                      <th scope="col-3">Actions</th>
+                      <th className="col-1">Id</th>
+                      <th className="col-3">Name</th>
+                      <th className="col-2">Contact</th>
+                      <th className="col-1">Age</th>
+                      <th className="col-3">Techs</th>
+                      <th className="col-2">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
