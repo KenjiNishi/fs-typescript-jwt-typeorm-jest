@@ -14,7 +14,9 @@ export interface CreateCandidateFormDataI{
     techs: string[];
 }
 
-export const acceptedTechs = ['React', 'C++', 'Nodejs'];
+export const acceptedTechs = 
+["C#", "Javascript","Nodejs", "Angular", "React", "Ionic","Mensageria", "PHP", "Laravel"];
+
 export const MinimumAge = "18";
 
 export const CreateCandidateForm = () => {
@@ -33,9 +35,8 @@ export const CreateCandidateForm = () => {
     
     return (
         <div className='container'>
-        <br/>
         <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="row">
+        <div className="row mt-1">
             <div className="col">
                 <label className="form-label me-2" htmlFor="name">Name</label>
                 <input
@@ -51,7 +52,7 @@ export const CreateCandidateForm = () => {
             </div>
         </div>
 
-        <div className="row">
+        <div className="row mt-1">
             <div className="col">
                 <label className="form-label me-2" htmlFor="age">Age</label>
                 <input
@@ -66,7 +67,7 @@ export const CreateCandidateForm = () => {
             </div>
         </div>
 
-        <div className="row">
+        <div className="row mt-1">
             <div className="col-sm-12">
                 <label className="form-label me-2" htmlFor="email">Email</label>
                 <input
@@ -82,7 +83,7 @@ export const CreateCandidateForm = () => {
             )}
         </div>
 
-        <div className="row">
+        <div className="row mt-1">
             <div className="col-sm-12">
                 <label className="form-label me-2" htmlFor="linkedin">Linkedin</label>
                 <input
@@ -95,23 +96,28 @@ export const CreateCandidateForm = () => {
           </div>
         </div>
 
-        <div className="row">
+        <div className="row mt-2">
             <label className="form-check-label">
                 Technologies:
             </label>
             <CheckboxGroup name="techs" value={techs} onChange={setTechs}>
             {(Checkbox) => (
                 <>
+                <div className="row">
                 {acceptedTechs.map(tech =>{
                     return(
-                        <div className="form-check" key={acceptedTechs.indexOf(tech)}>
+                        <div 
+                            className="col-sm-4 col-md-3 col-lg-2 form-check"
+                            key={acceptedTechs.indexOf(tech)}
+                        >
                             <Checkbox value={tech}/>
-                            <label className="form-check-label">
+                            <label className="form-check-label me-2">
                                 {tech}
                             </label>
                         </div>
                     )
                 })}
+                </div>
                 </>
             )}
             </CheckboxGroup>
@@ -120,7 +126,7 @@ export const CreateCandidateForm = () => {
             )}
         </div>
 
-        <div className="row">
+        <div className="row m-3">
             <button type="submit" className="btn btn-info">Create</button>
         </div>
       </form>

@@ -25,10 +25,14 @@ function CandidateListItem(props : CandidateListItemPropsI) {
           <p>{props.candidate.linkedin} </p>
         </td>
         <td>{props.candidate.age}</td>
-        <td>
-            <ul>
+        <td className="container-fluid">
+            <ul className="row">
                 {props.candidate.techs.map(tech =>{
-                    return(<li key={props.candidate.techs.indexOf(tech)} >{tech}</li>)
+                    return(
+                      <div className="col-auto" key={props.candidate.techs.indexOf(tech)}>
+                        <li>{tech}</li>
+                      </div>
+                    )
                 })}
             </ul>
         </td>
@@ -63,7 +67,7 @@ export default function CandidateList(){
   
     if(candidates.length>0){
         return (
-          <div className='container'>
+          <div className='container-fluid'>
             <div className="row">
               <label className="form-check-label">
                   Filter Technologies:
@@ -73,7 +77,7 @@ export default function CandidateList(){
                   <>
                   {acceptedTechs.map(tech =>{
                       return(
-                          <div className="col-2" key={acceptedTechs.indexOf(tech)}>
+                          <div className="col-3" key={acceptedTechs.indexOf(tech)}>
                               <Checkbox value={tech}/>
                               <label className="form-check-label m-1">
                                   {tech}
