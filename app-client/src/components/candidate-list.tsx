@@ -61,9 +61,22 @@ export default function CandidateList(){
     const candidates = useSelector((state: ReducersStoreInterface) => state.candidates.candidates);
     const [techFilter, setTechFilter] = useState<string[]>(acceptedTechs);
 
+    const [ListFilter, setListFilter] = useState<CandidateInterface[]>(candidates);
+
     useEffect(()=>{
         dispatch(listCandidates(token));
     },[])
+
+    useEffect(()=>{
+      const result = candidates.filter((candidate)=>{
+        let pass = false;
+        techFilter.forEach((tech)=>{
+          if(candidate.techs.includes(tech)){pass = true;}
+        })
+        return pass;
+      });
+      setListFilter(result);
+    },[candidates, techFilter])
   
     if(candidates.length>0){
         return (
@@ -106,7 +119,7 @@ export default function CandidateList(){
                   </thead>
                   <tbody>
                     {
-                      candidates.map(currentCandidate => {
+                      ListFilter.map(currentCandidate => {
                         return (
                           <CandidateListItem 
                             candidate={currentCandidate}
