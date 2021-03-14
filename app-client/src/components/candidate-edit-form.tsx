@@ -25,7 +25,7 @@ export const EditCandidateForm = () => {
 
     useEffect(()=>{
         const localQuery = listCandidates.filter(
-            (candidate) => {return candidate.id == id;}
+            (candidate) => {return candidate.id === id;}
         );
         if (localQuery.length===0) {
             dispatch(getCandidate(token, id));
@@ -41,11 +41,11 @@ export const EditCandidateForm = () => {
     ,[])
 
     useEffect(()=>{
-        if(selectedCandidate.id && selectedCandidate.id.length>0 && selectedCandidate.id==id){
+        if(selectedCandidate.id && selectedCandidate.id.length>0 && selectedCandidate.id===id){
             setCandidate(selectedCandidate);
             setTechs(selectedCandidate.techs);
         }
-    }, [selectedCandidate])
+    }, [selectedCandidate, id])
 
     const onSubmit = (data: CreateCandidateFormDataI) => {
         let formOutput = {...data, techs, id};

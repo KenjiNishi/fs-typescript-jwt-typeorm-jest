@@ -1,9 +1,11 @@
-import { useEffect} from 'react';
+import { useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import CheckboxGroup from 'react-checkbox-group'
 
 import { CandidateInterface, deleteCandidate, listCandidates } from '../actions/candidatesActions';
 import { ReducersStoreInterface } from '../reducers';
+import { acceptedTechs } from './candidate-create-form';
 
 interface CandidateListItemPropsI{
     key: string;
@@ -13,7 +15,7 @@ interface CandidateListItemPropsI{
 function CandidateListItem(props : CandidateListItemPropsI) {
     const dispatch = useDispatch();
     const token = useSelector((state: ReducersStoreInterface) => state.auth.token);
-
+  
     return(
     <tr>
         <th scope="row">{props.candidate.id}</th>
@@ -33,7 +35,8 @@ function CandidateListItem(props : CandidateListItemPropsI) {
         <td>
             <p> 
                 <button className="btn btn-danger" onClick={() => { 
-                    dispatch(deleteCandidate(token, props.candidate.id));
+                    dispatch(deleteCandidate(token, props.candidate.id))
+                    dispatch(listCandidates(token))
                 }}>Delete</button> 
             
                 <Link 
@@ -52,6 +55,7 @@ export default function CandidateList(){
 
     const token = useSelector((state: ReducersStoreInterface) => state.auth.token);
     const candidates = useSelector((state: ReducersStoreInterface) => state.candidates.candidates);
+    const [techFilter, setTechFilter] = useState<string[]>(acceptedTechs);
 
     useEffect(()=>{
         dispatch(listCandidates(token));
@@ -60,10 +64,31 @@ export default function CandidateList(){
     if(candidates.length>0){
         return (
           <div className='container'>
+            <div className="row">
+              <label className="form-check-label">
+                  Filter Technologies:
+              </label>
+              <CheckboxGroup name="techs" value={techFilter} onChange={setTechFilter}>
+              {(Checkbox) => (
+                  <>
+                  {acceptedTechs.map(tech =>{
+                      return(
+                          <div className="col-2" key={acceptedTechs.indexOf(tech)}>
+                              <Checkbox value={tech}/>
+                              <label className="form-check-label m-1">
+                                  {tech}
+                              </label>
+                          </div>
+                      )
+                  })}
+                  </>
+              )}
+              </CheckboxGroup>
+            </div>
+
             <div className='row'>
               <div className='col-sm-12'>
                 <br/>
-                <h3>Candidates :</h3>
                 <table className="table table-light table-hover">
                   <thead className="table-dark">
                     <tr >
@@ -77,12 +102,12 @@ export default function CandidateList(){
                   </thead>
                   <tbody>
                     {
-                        candidates.map(currentCandidate => {
-                            return (
-                                <CandidateListItem 
-                                    candidate={currentCandidate}
-                                    key={currentCandidate.id}
-                                />
+                      candidates.map(currentCandidate => {
+                        return (
+                          <CandidateListItem 
+                            candidate={currentCandidate}
+                            key={currentCandidate.id}
+                          />
                             )
                         })
                     }
