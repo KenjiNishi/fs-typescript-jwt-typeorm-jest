@@ -45,6 +45,15 @@ class CandidateController{
             return res.sendStatus(404).json({message:"Candidate id doesn't exist."});
         }
 
+        const candidateEmail = await repository.findOne({where: {email}});
+        if(
+            candidateEmail &&
+            candidateEmail.email===email &&
+            candidateEmail.id!=candidate.id
+        ){
+            return res.status(409).json({message:"Candidate with this email already exists."});
+        }
+
         if(name){candidate.name = name;}
         if(email){candidate.email = email;}
         if(age){candidate.age = age;}
