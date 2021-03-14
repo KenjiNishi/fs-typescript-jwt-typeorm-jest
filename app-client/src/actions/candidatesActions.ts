@@ -124,7 +124,7 @@ export const updateCandidate : ActionCreator<
         candidatesStateInterface, 
         null, 
         candidatesActionGetI
-    >>  = ( id: string , token : string, candidate : CandidateInterface) =>{
+    >>  = (token : string, id: string, updated : CandidateInterface) =>{
 
         return async (dispatch : Dispatch) =>{
             const config = {
@@ -133,7 +133,7 @@ export const updateCandidate : ActionCreator<
                     'Authorization': `Bearer ${token}`
                 }
             }
-            const body = JSON.stringify(candidate);
+            const body = JSON.stringify(updated);
             
             await axios.put(`http://localhost:8080/api/candidates/update/${id}`, body, config)
                 .then((response : AxiosResponse) => {
@@ -155,7 +155,7 @@ export const deleteCandidate : ActionCreator<
         candidatesStateInterface, 
         null, 
         candidatesActionsNoPayloadI
-    >>  = ( id: string , token : string) =>{
+    >>  = (token : string, id: string ) =>{
 
         return async (dispatch : Dispatch) =>{
             const config = {
