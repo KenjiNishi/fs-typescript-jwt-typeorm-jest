@@ -17,25 +17,26 @@ The app can only be accessed by Recruiters, with Login Authentication. Recruiter
 Features:
 * Login with Email and Password;
 * Candidate CRUD with: Name, Email, Age, LinkedIn URL and a multiple choice combo of technologies;
-*  It must be possible to filter the candidate list by desired technology.
+* It must be possible to filter the candidate list by desired technology.
 
 ## Running the Backend
 At the Project root `./`:
-* install dependencies with ```yarn install```;
+* Install dependencies with ```yarn install```;
+* Run database migrations with ```yarn typeorm migration:run``` ;
 * Create a .env file with 
     ```
     PORT = 8080
     SERVER_URL="http://localhost"
     TOKEN_SECRET ='supersecretpassword'
     ```
-* run the server with ```yarn dev``` ;
-* for test cases use ```yarn test```;
+* Run the server with ```yarn dev``` ;
+* For test cases use ```yarn test```;
 
 ## Running the Frontend
 At the `./app-client` directory:
-* install dependencies with ```yarn install```;
-* run the server with ```yarn start``` ;
-* if not running, add a .env file with 
+* Install dependencies with ```yarn install```;
+* Run the server with ```yarn start``` ;
+* If not running, add a .env file with 
     ```
     SKIP_PREFLIGHT_CHECK=true
     ```
