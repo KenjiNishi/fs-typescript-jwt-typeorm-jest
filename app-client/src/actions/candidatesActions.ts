@@ -47,7 +47,6 @@ export const listCandidates : ActionCreator<
             }
             await axios.get('http://localhost:8080/api/candidates/list/', config)
                 .then((response : AxiosResponse) => {
-                    dispatch(createMessage(`Listing Candidates!`));
                     dispatch({
                         type: LIST_CANDIDATES,
                         payload: response.data
@@ -107,7 +106,6 @@ export const getCandidate : ActionCreator<
             }
             await axios.get(`http://localhost:8080/api/candidates/get/${id}`, config)
                 .then((response : AxiosResponse) => {
-                    dispatch(createMessage(`Getting Candidate information...`));
                     dispatch({
                         type: GET_CANDIDATE,
                         payload: response.data

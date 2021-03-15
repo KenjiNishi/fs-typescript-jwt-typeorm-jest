@@ -18,11 +18,9 @@ export const alertsReducer  = (
     {
     switch (action.type) {
         case GET_ERRORS:
-            console.log('Received Error: ');console.log(action.payload);
-            return {...action.payload}
+            return {...state, ...action.payload}
         case CREATE_MESSAGE:
-            console.log('Message created: ');console.log(action.payload);
-            return {...state, ...action.payload};
+            return {...state, ...action.payload, status : -1};
         default:
             return state;
     }
