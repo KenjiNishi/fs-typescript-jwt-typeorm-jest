@@ -25,46 +25,51 @@ export default function Login(){
     console.log('Logged in! Going to Dashboard. Auth:', isAuthenticated);
     return <Redirect to="/" />;
   }
-  return (
-      <div>
-        <div className="card card-body mt-5">
-          <h2 className="text-center">Login, Recruiter!</h2>
-          <form onSubmit={onSubmit}>
-            <div className="form-group m-2">
-              <label>E-mail</label>
-              <input
-                type="text"
-                className="form-control mt-1"
-                name="email"
-                onChange={(e: React.FormEvent<HTMLInputElement>) =>
-                  setEmail((e.target as HTMLInputElement).value)
-                }
-                value={email}
-              />
-            </div>
 
-            <div className="form-group m-2">
-              <label>Password</label>
-              <input
-                type="password"
-                className="form-control mt-1"
-                name="password"
-                onChange={(e: React.FormEvent<HTMLInputElement>) =>
-                  setPassword((e.target as HTMLInputElement).value)
-                }
-                value={password}
-              />
-            </div>
-            <div className="form-group m-2">
-              <button type="submit" className="btn btn-primary mt-2">
-                Login
-              </button>
-            </div>
-            <p>
-              New recruiters can be registered via HTTP request! Check the /etc folder.
-            </p>
-          </form>
-        </div>
+  return (
+    <div>
+      <div className="card card-body mt-5">
+        <h2 className="text-center">Login, Recruiter!</h2>
+        <form onSubmit={onSubmit}>
+
+          <div className="form-group m-2">
+            <label>E-mail</label>
+            <input
+              type="text"
+              className="form-control mt-1"
+              name="email"
+              onChange={(e: React.FormEvent<HTMLInputElement>) =>
+                setEmail((e.target as HTMLInputElement).value)
+              }
+              value={email}
+            />
+          </div>
+
+          <div className="form-group m-2">
+            <label>Password</label>
+            <input
+              type="password"
+              className="form-control mt-1"
+              name="password"
+              onChange={(e: React.FormEvent<HTMLInputElement>) =>
+                setPassword((e.target as HTMLInputElement).value)
+              }
+              value={password}
+            />
+          </div>
+
+          <div className="form-group m-2">
+            <button type="submit" className="btn btn-primary mt-2">
+              Login
+            </button>
+          </div>
+
+          <p>
+            New recruiters can be registered via HTTP request! Check the /etc folder.
+          </p>
+          
+        </form>
       </div>
+    </div>
   );
 }

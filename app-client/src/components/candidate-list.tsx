@@ -18,37 +18,37 @@ function CandidateListItem(props : CandidateListItemPropsI) {
   
     return(
     <tr>
-        <th scope="row">{props.candidate.id}</th>
-        <td>{props.candidate.name}</td>
-        <td>
-          <p>{props.candidate.email}</p>
-          <p>{props.candidate.linkedin} </p>
-        </td>
-        <td>{props.candidate.age}</td>
-        <td className="container-fluid">
-            <ul className="row">
-                {props.candidate.techs.map(tech =>{
-                    return(
-                      <div className="col-auto" key={props.candidate.techs.indexOf(tech)}>
-                        <li>{tech}</li>
-                      </div>
-                    )
-                })}
-            </ul>
-        </td>
-        <td>
-            <p> 
-                <button className="btn btn-danger" onClick={() => { 
-                    dispatch(deleteCandidate(token, props.candidate.id))
-                    dispatch(listCandidates(token))
-                }}>Delete</button> 
-            
-                <Link 
-                    to={"/edit/"+props.candidate.id}
-                    onClick={() => {}}> 
-                    <button className="btn btn-info">Edit</button>
-                </Link> 
-            </p>
+      <th scope="row">{props.candidate.id}</th>
+      <td>{props.candidate.name}</td>
+      <td>
+        <p>{props.candidate.email}</p>
+        <p>{props.candidate.linkedin} </p>
+      </td>
+      <td>{props.candidate.age}</td>
+      <td className="container-fluid">
+          <ul className="row">
+              {props.candidate.techs.map(tech =>{
+                  return(
+                    <div className="col-auto" key={props.candidate.techs.indexOf(tech)}>
+                      <li>{tech}</li>
+                    </div>
+                  )
+              })}
+          </ul>
+      </td>
+      <td>
+          <p> 
+              <button className="btn btn-danger" onClick={() => { 
+                  dispatch(deleteCandidate(token, props.candidate.id))
+                  dispatch(listCandidates(token))
+              }}>Delete</button> 
+          
+              <Link 
+                  to={"/edit/"+props.candidate.id}
+                  onClick={() => {}}> 
+                  <button className="btn btn-info">Edit</button>
+              </Link> 
+          </p>
       </td>
     </tr>
   )
@@ -81,6 +81,7 @@ export default function CandidateList(){
     if(candidates.length>0){
         return (
           <div className='container-fluid'>
+
             <div className="row">
               <label className="form-check-label">
                   Filter Technologies:
@@ -132,6 +133,7 @@ export default function CandidateList(){
                 </table>
               </div>
             </div>
+            
           </div>
         )
     }

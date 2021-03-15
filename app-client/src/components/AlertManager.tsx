@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { withAlert, transitions, positions } from 'react-alert';
-import { connect, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { ReducersStoreInterface } from '../reducers';
 
 export const alertOptions = {

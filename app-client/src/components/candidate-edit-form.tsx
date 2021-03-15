@@ -62,6 +62,7 @@ export const EditCandidateForm = () => {
         <h2>Editing Candidate</h2>
         <h3>id: {id}</h3>
         <form onSubmit={handleSubmit(onSubmit)}>
+            
         <div className="row">
             <div className="col">
                 <label className="form-label me-2" htmlFor="name">Name</label>
