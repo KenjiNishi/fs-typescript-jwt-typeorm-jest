@@ -8,6 +8,7 @@ import CandidateList from './candidate-list';
 
 export default function Dashboard(){
     const isAuthenticated = useSelector((state: ReducersStoreInterface) => state.auth.isAuthenticated);
+    const recruiter = useSelector((state: ReducersStoreInterface) => state.auth.recruiter);
 
     useEffect(()=>{
         
@@ -19,14 +20,7 @@ export default function Dashboard(){
   
     return (
         <div>
-            <h2>Welcome, hero.</h2>
-
-            <div className="container">
-                <Link to={"/create"}> 
-                        <button className="btn btn-info">Add new Candidate</button>
-                </Link>
-            </div>
-
+            <br/>
             <CandidateList/>
         </div>
     );

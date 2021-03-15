@@ -4,6 +4,7 @@ import { Route, Switch, BrowserRouter as Router} from 'react-router-dom';
 import { CreateCandidateForm } from './components/candidate-create-form';
 import { EditCandidateForm } from './components/candidate-edit-form';
 import Dashboard from './components/Dashboard';
+import Header from './components/Header';
 
 import Login from './components/Login';
 import store from './store';
@@ -14,6 +15,7 @@ function App() {
       <Router>
         <React.Fragment>
           <div className="container">
+          <Header />
           < Switch>
               <Route exact path="/" component={Dashboard} />
               <Route exact path="/login" component={Login} />
