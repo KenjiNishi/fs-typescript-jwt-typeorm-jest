@@ -30,11 +30,11 @@ export default function Login(){
         <div className="card card-body mt-5">
           <h2 className="text-center">Login, Recruiter!</h2>
           <form onSubmit={onSubmit}>
-            <div className="form-group">
-              <label>email</label>
+            <div className="form-group m-2">
+              <label>E-mail</label>
               <input
                 type="text"
-                className="form-control"
+                className="form-control mt-1"
                 name="email"
                 onChange={(e: React.FormEvent<HTMLInputElement>) =>
                   setEmail((e.target as HTMLInputElement).value)
@@ -43,11 +43,11 @@ export default function Login(){
               />
             </div>
 
-            <div className="form-group">
+            <div className="form-group m-2">
               <label>Password</label>
               <input
                 type="password"
-                className="form-control"
+                className="form-control mt-1"
                 name="password"
                 onChange={(e: React.FormEvent<HTMLInputElement>) =>
                   setPassword((e.target as HTMLInputElement).value)
@@ -55,9 +55,8 @@ export default function Login(){
                 value={password}
               />
             </div>
-
-            <div className="form-group">
-              <button type="submit" className="btn btn-primary">
+            <div className="form-group m-2">
+              <button type="submit" className="btn btn-primary mt-2">
                 Login
               </button>
             </div>

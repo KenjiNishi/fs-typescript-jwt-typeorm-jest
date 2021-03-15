@@ -1,4 +1,3 @@
-import React from 'react';
 import { Provider} from 'react-redux';
 import { Route, Switch, BrowserRouter as Router} from 'react-router-dom';
 import { Provider as AlertProvider } from 'react-alert';
@@ -18,7 +17,7 @@ function App() {
     <Provider store={store}>
       <AlertProvider template={AlertTemplate} {...alertOptions}>
       <Router>
-        <React.Fragment>
+        <div className="container">
           <Alerts/>
           <Header />
           < Switch>
@@ -27,7 +26,7 @@ function App() {
               <Route exact path="/create" component={CreateCandidateForm} />
               <Route exact path="/edit/:id" component={EditCandidateForm} />
             </Switch>
-        </React.Fragment>
+        </div>
       </Router>
       </AlertProvider>
     </Provider>
