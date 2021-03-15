@@ -59,7 +59,6 @@ export const EditCandidateForm = () => {
     }
     return (
         <div className='container'>
-        <br/>
         <h2>Editing Candidate</h2>
         <h3>id: {id}</h3>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -135,7 +134,7 @@ export const EditCandidateForm = () => {
                 <>
                 {acceptedTechs.map(tech =>{
                     return(
-                        <div className="form-check" key={acceptedTechs.indexOf(tech)}>
+                        <div className="col-sm-4 col-md-3 col-lg-2 form-check" key={acceptedTechs.indexOf(tech)}>
                             <Checkbox value={tech}/>
                             <label className="form-check-label">
                                 {tech}
@@ -151,7 +150,7 @@ export const EditCandidateForm = () => {
             )}
         </div>
 
-        <div className="row">
+        <div className="row m-3">
             <button type="submit" className="btn btn-info">Update Information</button>
         </div>
       </form>
